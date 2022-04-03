@@ -115,4 +115,14 @@ EXECUTE SCRIPTS FROM JENKINS:
 ---------------------------------------------------------------------------------------------------------
 
     1. Create the sample executable script file (test-script.sh)
-    2. 
+    2. Script can be copied by,
+            1. Copy to local or container path and use that path in script. 
+            2. Commit in git hub and use the $WORKSPACE/test-script.sh 
+    3. Use that path to execute the script.
+
+
+---------------------------------------------------------------------------------------------------------
+ADD PARAMETERS IN JENKINS JOB: 
+---------------------------------------------------------------------------------------------------------
+
+    
