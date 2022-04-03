@@ -16,6 +16,7 @@ JENKINS JOB/ITEM:
     Multi Configuration: 
         Like free style but more flexibility on environment and configurations. 
 
+
 ---------------------------------------------------------------------------------------------------------
 FIRST FREE STYLE PROJECT: 
 ---------------------------------------------------------------------------------------------------------
@@ -23,6 +24,7 @@ FIRST FREE STYLE PROJECT:
     New Item (or) Create a job -> Name -> OK 
 
     Build -> Add build step -> Execute Shell 
+
 
 ---------------------------------------------------------------------------------------------------------
 JOB CONFIGURATIONS: 
@@ -93,6 +95,7 @@ JOB CONFIGURATIONS:
         Run with timeout 
         Set build status to pending on github commit 
 
+
     Post Build Actions 
         Aggregate downstream test results 
         Archive the artifacts 
@@ -105,7 +108,11 @@ JOB CONFIGURATIONS:
         Set github commit status 
         Set build status on github commit (deprecated)
         Delete workspace when build is done.
-        
+
+
 ---------------------------------------------------------------------------------------------------------
-JOB CONFIGURATIONS: 
+EXECUTE SCRIPTS FROM JENKINS:
 ---------------------------------------------------------------------------------------------------------
+
+    1. Create the sample executable script file (test-script.sh)
+    2. 
