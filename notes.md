@@ -1,7 +1,9 @@
 
 ---------------------------------------------------------------------------------------------------------
-JENKINS JOB/ITEM: 
+JENKINS BASICS: 
 ---------------------------------------------------------------------------------------------------------
+
+JENKINS JOB/ITEM: 
 
     It is any runnable tasks that is controlled by jenkins. 
 
@@ -16,19 +18,19 @@ JENKINS JOB/ITEM:
     Multi Configuration: 
         Like free style but more flexibility on environment and configurations. 
 
+---------------------------------------------------------------------------------------------------------
 
----------------------------------------------------------------------------------------------------------
 FIRST FREE STYLE PROJECT: 
----------------------------------------------------------------------------------------------------------
+
 
     New Item (or) Create a job -> Name -> OK 
 
     Build -> Add build step -> Execute Shell 
 
+---------------------------------------------------------------------------------------------------------
 
----------------------------------------------------------------------------------------------------------
 JOB CONFIGURATIONS: 
----------------------------------------------------------------------------------------------------------
+
 
     General:  General settings. 
 
@@ -111,8 +113,9 @@ JOB CONFIGURATIONS:
 
 
 ---------------------------------------------------------------------------------------------------------
+
 EXECUTE SCRIPTS FROM JENKINS:
----------------------------------------------------------------------------------------------------------
+
 
     1. Create the sample executable script file (test-script.sh)
     2. Script can be copied by,
@@ -122,7 +125,27 @@ EXECUTE SCRIPTS FROM JENKINS:
 
 
 ---------------------------------------------------------------------------------------------------------
+
 ADD PARAMETERS IN JENKINS JOB: 
+
+    It helps to pass the parameter dynamically to the jenkins. 
+
+    Select option "This Option is parametrized" -> Choose the paramter format. 
+                Select Name, Default value & Description. 
+    
+    After this "Build" option changed to "Build with parameters".
+
 ---------------------------------------------------------------------------------------------------------
 
-    
+LOGICAL INPUT IN JENKINS JOB:
+
+        Here tried to use different parameter types like boolean, choice etc. 
+
+
+---------------------------------------------------------------------------------------------------------
+CONTINUOS INTEGRATION WITH JENKINS: 
+---------------------------------------------------------------------------------------------------------
+
+JENKINS INTEGRATION WITH GIT AND GITHUB: 
+
+        
