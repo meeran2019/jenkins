@@ -148,4 +148,28 @@ CONTINUOS INTEGRATION WITH JENKINS:
 
 JENKINS INTEGRATION WITH GIT AND GITHUB: 
 
+        1. Manage Jenkins -> Choose the "Git Hub" and "GitHub Integration Plugin".
         
+
+CONFIGURE JAVA & MAVEN IN JENKINS: 
+
+        1. Manage Jenkins -> Global Tool Configuration. 
+        2. Enter the JAVA_HOME & MAVEN_HOME path details. 
+        3. JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java  (readlink -f $(which java))
+        4. MAVEN=/usr/share/maven
+
+
+CREATE FIRST MAVEN JOB: 
+
+        1. Dashboard -> New Item -> Free style project -> Name 
+        2. Repository used = https://github.com/anshulc55/Jenkins_Upgradev3.git . If puplic repository, then no need of credentials. 
+        3. Build -> Invoke Top Level Maven Targets -> Select Advanced -> POM file PATH
+
+
+SOURCE CODE POLLING IN JENKINS: 
+
+        Build Trigger -> Poll SCM 
+                Based on schedule, it polls git hub to look for changes. 
+                
+
+
