@@ -22,7 +22,6 @@ JENKINS JOB/ITEM:
 
 FIRST FREE STYLE PROJECT: 
 
-
     New Item (or) Create a job -> Name -> OK 
 
     Build -> Add build step -> Execute Shell 
@@ -30,7 +29,6 @@ FIRST FREE STYLE PROJECT:
 ---------------------------------------------------------------------------------------------------------
 
 JOB CONFIGURATIONS: 
-
 
     General:  General settings. 
 
@@ -123,7 +121,6 @@ EXECUTE SCRIPTS FROM JENKINS:
             2. Commit in git hub and use the $WORKSPACE/test-script.sh 
     3. Use that path to execute the script.
 
-
 ---------------------------------------------------------------------------------------------------------
 
 ADD PARAMETERS IN JENKINS JOB: 
@@ -140,7 +137,6 @@ ADD PARAMETERS IN JENKINS JOB:
 LOGICAL INPUT IN JENKINS JOB:
 
         Here tried to use different parameter types like boolean, choice etc. 
-
 
 ---------------------------------------------------------------------------------------------------------
 CONTINUOS INTEGRATION WITH JENKINS: 
@@ -215,7 +211,6 @@ ARCHIVE LAST SUCCESSFUL ARTIFACT:
         2. Files to archive -> Give the file path (maven-samples/single-module/target/single-module-project.jar)
         3. "Last successful artifacts" will be shown in job page. 
 
-
 ---------------------------------------------------------------------------------------------------------
 CONTINUOS DELIVERY WITH JENKINS: 
 ---------------------------------------------------------------------------------------------------------
@@ -244,8 +239,66 @@ DEPLOY TO PRODUCTION:
 INFRASTRUCTURE AS CODE: 
 ---------------------------------------------------------------------------------------------------------
 
+JENKINS UI: 
+
+        It allows user to manage jobs via UI.
+        Problem is there is no audit trial and cant know who changed what. 
+        Difficult to track the history of changes. 
+        Difficult to rollback the changes. 
+
+        To resolve this, write the jenkins job as code and store in SCM. 
+
+                IAC allow developers to bundle build instruction with their application code.
+
+JENKINS JOB DSL (Domain Specific Language): 
+
+        Jenkins DSL is programatic way to implement jenkins job. 
+        Jenkins "Job DSL" Plugin is used. 
+        User can describe the job using Groovy Base Script. 
+
+        Manage Plugins -> "Job DSL" install. 
+
+JENKINS JOB DSL WITH MAVEN PROJECT: 
+
+        Seed Job (normal free style project) -> Have build step "Process job DSL" -> Generates job.
+
+        example-dsl.groovy file to be created. Look the documentation for the name and field details.
+
+        1. Create the DSL file in groovy for the job.
+        2. Create the seed job, select git source, in build "Process Job DSL"
+        3. Manage Jenkins -> In-process Script Approval -> Approve it. 
+        
+        NOTE: When seed job is triggered, it triggers the DSL job. If already created, then no change.
+        For DSL job to trigger, require to trigger manually. 
 
 
+JENKINS CODE PIPELINE OVERVIEW: 
 
+        Single job is created by using DSL Groovy and Seed job.
+        
+        For pipeline also used DSL groovy. Pipeline as Code.
 
+        JENKINSFILE: 
+                jenkinsfile is a text file that stores the entire workflow as code and it can be checked into SCM.
+                it is written in groovy DSL.
+                pipeline - It is user defined block contains all processes and collection of all stages. 
+                Node - It is a machine where the workflow is executed.
+                Agent - It is directive that can run multiple builds with only one instance of jenkins. 
+                        any - runs on any available agent. 
+                Stages - There are multiple stages and each performs tasks.
+                Steps - Series of steps defined with in stage and perform steps sequentially. 
+                        There must be atleast 1 step.
+                
+        1. Install "Build Pipeline Plugin" 
+        2. Create new item -> Select Pipeline -> Select Pipeline (Pipeline script from SCM) -> Script Path.
+        3. Build now 
+
+DEVELOPER CREATE JENKINSFILE: 
+
+        1. Developer can create jenkins file. 
+        2. Devops team to Create a first job that will trigger the jenkins file. 
+        3. Devops team to Create a second and third job. 
+        4. In jenkins file, developer to refer the 2nd and 3rd job.
+
+---------------------------------------------------------------------------------------------------------
 
