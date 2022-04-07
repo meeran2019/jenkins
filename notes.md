@@ -233,7 +233,18 @@ BUILD PIPELINE DESIGN:
         Plugin "build pipeline view" - helps to view the upstream and downstream job.
         "Upstream Projects" & "Downstream Projects" will be shown in job page.
 
----------------------------------------------------------------------------------------------------------        
+DEPLOY TO PRODUCTION: 
+
+        1. Create the job 1 (with source code)
+        2. Create job 2 with Build Triggers -> Build after other projects are built. 
+        3. Create job 3.
+        4. In job 2, Post build actions -> Build other project (auto) / Build other project (manual)
+        
+---------------------------------------------------------------------------------------------------------
+INFRASTRUCTURE AS CODE: 
+---------------------------------------------------------------------------------------------------------
+
+
 
 
 
