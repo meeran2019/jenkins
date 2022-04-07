@@ -170,6 +170,56 @@ SOURCE CODE POLLING IN JENKINS:
 
         Build Trigger -> Poll SCM 
                 Based on schedule, it polls git hub to look for changes. 
-                
+                In Schedule, gives in CRON format.
+                IF any changes, then only build will be triggered. 
+
+
+REMOTE BUILD TRIGGER IN JENKINS:
+
+        Remote build trigger is helpful when to trigger externally. 
+        For example some event happening in server A and jenkins running in server B. Based on event in server A, will trigger the jenkin build in server B. 
+        Can call the build trigger by some sript, API or UI click.
+
+        Build Trigger -> Trigger builds remotely. 
+                1. Enter the authentication token (any value).
+                2. Use the below URL to trigger the build, 
+                        JENKINS_URL/job/remote-build-trigger/build?token=TOKEN_NAME or buildWithParameters?token=TOKEN_NAME
+                3. After click the URL http://localhost:8080/job/remote-build-trigger/build?token=TEST-TOKEN , triggered the job.
+        
+
+        Build Trigger -> Build Periodically: 
+                Based on the cron schedule, trigget the build periodically. 
+
+
+DEPLOY THE JAR LOCALLY: 
+
+        1. Use the shell script to execute,
+                java -jar jar/file/path.jar 
+        2. $WORKSPACE - gives workspace of jenkins. 
+
+        NOTE: If any SPACES with job name, then shell path will be failed. 
+
+
+PUBLISH TEST RESULTS IN JOB: 
+
+        1. First to get the report path. 
+                Surefire report directory: /var/lib/jenkins/workspace/first maven project/maven-samples/single-module/target/surefire-reports
+        2. Project -> Configure -> Post Buil Actions -> Publish JUnit test result report.
+        3. Enter the path with path/to/*.xml
+        3. "Test Result Trend" graph will be shown in job page. 
+
+
+ARCHIVE LAST SUCCESSFUL ARTIFACT: 
+
+        1. Post Build Actions -> Archive the artifacts.
+        2. Files to archive -> Give the file path (maven-samples/single-module/target/single-module-project.jar)
+        3. "Last successful artifacts" will be shown in job page. 
+
+
+---------------------------------------------------------------------------------------------------------
+CONTINUOS DELIVERY WITH JENKINS: 
+---------------------------------------------------------------------------------------------------------
+
+
 
 
