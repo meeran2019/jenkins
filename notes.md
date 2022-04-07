@@ -220,6 +220,21 @@ ARCHIVE LAST SUCCESSFUL ARTIFACT:
 CONTINUOS DELIVERY WITH JENKINS: 
 ---------------------------------------------------------------------------------------------------------
 
+BUILD PIPELINE PLUGIN: 
+
+        Plugin - Copy Artifacts - Used to copy from one project to another. 
+        Plugin - Deploy to Container - Used to deploy to container. 
+
+        1. Created the 2 jobs, 1 to create artifacts. 
+        2. 2nd job to copy artifacts and deploy to container. 
+
+BUILD PIPELINE DESIGN: 
+
+        Plugin "build pipeline view" - helps to view the upstream and downstream job.
+        "Upstream Projects" & "Downstream Projects" will be shown in job page.
+
+---------------------------------------------------------------------------------------------------------        
+
 
 
 
