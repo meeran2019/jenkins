@@ -301,4 +301,121 @@ DEVELOPER CREATE JENKINSFILE:
         4. In jenkins file, developer to refer the 2nd and 3rd job.
 
 ---------------------------------------------------------------------------------------------------------
+DISTRIBUTED BUILDS IN JENKINS: 
+---------------------------------------------------------------------------------------------------------
+
+DISTRIBUTED BUILDS CONCEPT: 
+
+        Jenkins Master Node to execute the builds and package the application. 
+        Master Slave Architecture. Can have multiple slave nodes to execute build. 
+        Jenkins allow user to run on different environments like linux, windows etc. 
+
+        JENKINS MASTER: 
+                Machine where jenkins is installed. 
+                Schedule the job on slave machine.
+                Dispatch the build to the slaves for execution.
+                Monitor the slaves.
+                Recording and presenting build results.
+                Can also execute build jobs directly.
+        
+        JENKINS SLAVE: 
+                A slave is a java executable that runs on slave machine.
+                It hears the request from jenkins master node. 
+                Slaves run on variety of operating system.
+                It execute the build jobs dispatched by master. 
+                Can configure a project to run on particular slave machine. 
+
+
+CREATE & CONFIGURE JENKINS SLAVE: 
+
+        Using SSH, master node start slave agent on slave machine.
+        Automatic SSH login without password from master to slave is needed.
+        Master node run as jenkins user to start the slave agent. 
+
+        1. Create the slave machine (ex: ec2-user)
+        2. In master, switch to jenkins user, sudo -ui jenkins
+        3. Create the key pair (ssh-keygen -t rsa)
+        
+
+        Install Jenkins Agent on the Slave Node:
+
+                Running on the master node:
+                sudo -iu jenkins
+                ssh root@<slave_ip> mkdir -p .ssh
+                cat .ssh/id_rsa.pub | ssh root@<slave_ip> 'cat >> .ssh/authorized_keys'
+
+                Running on slave node:
+                mkdir bin
+                cd bin
+                wget http://<master_ip>:8080/jnlpJars/slave.jar
+
+                Verify and Install Java:
+                java -version
+                sudo add-apt-repository ppa:webupd8team/java
+                sudo apt-get update
+                sudo apt install openjdk-8-jdk
+
+                Start Slave Agent Command:
+                ssh root@<slave_ip> java -jar /root/bin/slave.jar
+
+                Trouble Shooting
+                If you don't see the "Launch agent via execution of command on master" option in the add slave page. This is due to the fact that the latest version of Jenkins has removed that option from the default install and moved it to this plugin: https://plugins.jenkins.io/command-launcher
+
+                The solution is to install the command-launcher Jenkins plugin first before you can add a slave.
+
+
+LABEL NODES & CONCURRENT BUILDS: 
+
+        Label is maintained at node level. 
+        At job level, can select the label on which node to run. 
+
+---------------------------------------------------------------------------------------------------------
+JENKINS SECURITY ASPECTS: 
+---------------------------------------------------------------------------------------------------------
+
+ENABLE/DISABLE LOGIN JENKINS:
+
+        Manage Jenkins -> Configure Global Security -> Enable security.
+
+
+ALLOW USERS TO SIGNUP JENKINS:
+
+        Manage Jenkins -> Configure Global Security -> Security Realm -> Allow users to signup.
+
+        It is not recommened, created user will have all access to jenkins.
+
+
+INSTALL POWERFUL SECURITY PLUGIN: 
+
+        Plugin "Role-based authorization strategy"
+
+HOW TO CREATE USERS IN JENKINS:
+
+        Manage Jenkisn -> Manage users -> Create users.
+
+ROLE BASED SECURITY: 
+
+        Manage Jenkins -> Security -> Configure Global Security -> Role based strategy.
+
+        Manage Jenkins -> Security -> Configure Global Security -> Manage and Assign Roles 
+
+
+---------------------------------------------------------------------------------------------------------
+JENKINS VARIABLES:
+---------------------------------------------------------------------------------------------------------
+
+GLOBAL ENVIRONMENT VARIABLES: 
+
+        https://www.jenkins.io/doc/book/pipeline/jenkinsfile/#using-environment-variables
+
+
+CUSTOM ENVIRONMENT VARIABLES: 
+
+        Manage Jenkins -> Configure System -> Global Properties -> Environment variables. 
+
+---------------------------------------------------------------------------------------------------------        
+
+
+
+
 
