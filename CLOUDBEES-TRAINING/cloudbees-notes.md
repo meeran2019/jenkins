@@ -41,6 +41,7 @@ SYSTEM CONFIGURATION:
         Configure many standard aspects of jenkins including JDK installation, Build tools installation, Version control tools etc.
         Multiple version of maven or jdk can be installed. 
 
+
 MANAGE PLUGINS: 
 
     Many features are implemented with multiple plugins and many plugins have dependencies on other plugins.
@@ -54,4 +55,17 @@ MANAGE PLUGINS:
     Plugins can also install manually without using UI.
 
 
+BUILD NOTIFICATIONS: 
+
+    Jenkins allow to send notifications through email, slack or other channels. 
+
+    Manage Jenkins -> Configure System
+
+    Some plugins used are ,
+        cleaning up and notifications, Notification plugin, email-ext plugin, mailer plugin, slack plugin.
+
+
+WORKING WITH NODES: 
+
+    
 
