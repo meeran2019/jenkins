@@ -267,10 +267,7 @@ JENKINS JOB DSL WITH MAVEN PROJECT:
         1. Create the DSL file in groovy for the job.
         2. Create the seed job, select git source, in build "Process Job DSL"
         3. Manage Jenkins -> In-process Script Approval -> Approve it. 
-        
-        NOTE: When seed job is triggered, it triggers the DSL job. If already created, then no change.
-        For DSL job to trigger, require to trigger manually. 
-
+                
 
 JENKINS CODE PIPELINE OVERVIEW: 
 
