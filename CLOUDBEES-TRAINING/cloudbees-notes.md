@@ -67,5 +67,57 @@ BUILD NOTIFICATIONS:
 
 WORKING WITH NODES: 
 
+    Node is a server where jenkins run build jobs. Agent is a tool that manages build execution on the node. 
+    Available nodes and agent listed on "Build executor status".
+
+    Manage Jenkins -> Manage Nodes and Clouds. 
+
+
+BUILD AGENTS: 
+
+    Manage Jenkins -> Configure Global Security -> enable "TCP Port for JNLP agents" to random.
+
+    https://bhargavamin.com/how-to-do/setup-jenkins-slave-amazon-linux-aws/
+
+    https://university.cloudbees.com/jenkins-administration-1-essentials/868943
+
+
+---------------------------------------------------------------------------------------------------------
+SECURITY: 
+---------------------------------------------------------------------------------------------------------
+
+    To select authentication method - Manage Jenkins -> Configure Global Security -> Security Realm 
+
+    To manage users - Manage Jenkins -> Security -> Manage users.
+
+    To select authorization - Manage Jenkins -> Configure global security -> Authorization
+
+    Accouting: 
+        Auditing can be done by using "Audit Trail Plugin".
+
+    Global Security Settings: 
+
+        Port for inbound agents: 
+            It can be used to launch an application on client desktop by using resources that are hosted on remote server. 
+
+        Configure credential provider: 
+            It allow to choose provider like git hub, artifactory etc. 
+
+        Manage Credentials: 
+            Used to store the credentials in different format. 
+
+FOLDERS: 
+
+    It can be created with separate namespace for different projects with same name and helps to simplify the pipeline. 
+
+    Move - Helps to move job from one folder to another.
+
+
+
+
     
+
+
+
+        
 
