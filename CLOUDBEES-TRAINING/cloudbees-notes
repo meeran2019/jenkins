@@ -206,9 +206,34 @@ PIPELINE SECTION:
 
 
 SKELETAL PIPELINE USING BLUE OCEAN: 
+    
+    https://university.cloudbees.com/jenkins-pipeline-1-essentials/756201
 
     1. Jenkins -> Open Blue Ocean 
-    2. 
+    2. Blue Ocean -> Create Pipeline -> Select Source (Git, Github etc).
+        click ctrl + S to update jenkins file manually.
+    
+        pipeline {
+            agent any
+            stages {
+                stage('Buzz Buzz') {
+                steps {
+                    echo 'Bees Buzz!'
+                }
+                }
+
+                stage('Bees Bees') {
+                steps {
+                    echo 'Buzz, Bees, Buzz!'
+                    echo 'Bees Buzzing!'
+                    echo 'Bees Buzzing Again'
+                }
+                }
+
+            }
+            }
+
+
 
 
 
