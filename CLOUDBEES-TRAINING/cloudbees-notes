@@ -113,9 +113,105 @@ FOLDERS:
     Move - Helps to move job from one folder to another.
 
 
+MONITOR JENKINS: 
 
+    Manage Jenkins -> Status Information
+        
+        System log - To display system logs. 
+
+        Load Statistics - To track utilization of executors. 
+
+RUNNING BACKUPS: 
+
+    $JENKINS_HOME directory to be backedup.
+    ./confix.xml file 
+
+    https://university.cloudbees.com/jenkins-administration-1-essentials/769813
+
+
+AUTOMATE JENKINS:    
+
+    jenkins CLI can be used.
+
+    Manage Jenkins -> Tools and Actions -> Jenkins CLI 
+
+    1. Download the jenkins-cli.jar file
+    2. Run the command  "java -jar jenkins-cli.jar -s http://localhost:8080/ -webSocket help "
+            -s - URL to connecto to jenkins.
+    3. Manage Jenkins -> Tools and Actions -> Jenkins CLI -> Available commands -> Gives list of core jenkins available command. 
+        By using plugins, can contribute additional commands. 
+
+    Can also use groovysh/groovy in CLI. 
+            "java -jar jenkins-cli.jar -s http://localhost:8080/ groovysh "
+
+    JENKINS API: 
+
+        curl -X POST \
+        --data token=${TOKEN} \
+        --data-urlencode json=`{"parameter": [{"name":"id", "value":"123"}, \
+            {"name":"verbosity"}, "value":"high"}]}` \
+        http://${JENKINS_URL}/job/${MY_PROJECT}/build/api
+
+    SCRIPT CONSOLE: 
+        It helps to type in and execute an arbitrary groovy script on the server. 
+            Manage Jenkins -> Tools and Actions -> Script Console.
+
+    RELOAD CONFIGURATION FROM DISK: 
+        If any configuration changes through CLI, it will require ro refresh to update the configuration.
+
+        Manage Jenkins -> Tools and Actions -> Reload configuration from disk.
 
     
+---------------------------------------------------------------------------------------------------------
+
+PIPELINE AS CODE: 
+
+    Pipeline is defined in jenkinsfile that uses DSL based on groovy script. 
+    Deployment flow is expressed as Code.
+    jenkinsfile can be stored in SCM.
+
+
+PIPELINE SECTION: 
+
+    jenkinsfile that defines the pipeline uses DSL(Domain Specific Language) based on Apache Groovy.
+
+    It consists of following structure, 
+
+        pipeline 
+            agent   -   It defines the node where the programs and script to be executed. 
+                Stages  -   It defines the work to be done. 
+                    Steps   -   Execute the actual program and scripts to be run. 
+
+
+    DECLARATIVE vs SCRIPTED PIPELINE: 
+
+        Scripted: 
+            Uses Pipeline DSL Groovy to define build steps and accomplish in single script that would require many freestyle jobs chained together.
+            Executed serially from top to bottom.
+            Relies on groovy expression.
+
+        Declarative: 
+            It helps to define a pipeline without learn groovy.
+            It offers predefined structure. 
+
+        http://localhost:8080/job/test-pipeline-project/directive-generator/
+
+        Snippet Generator                   -   Used to generate the script. 
+        Declarative Directive Generator     -   Used to generate the pipeline code for declarative. 
+
+    BLUE OCEAN GRAPHICAL EDITOR: 
+
+        It simplies the tasks of create and running declarative pipelines.
+        It integrate with Git, github etc. 
+
+
+SKELETAL PIPELINE USING BLUE OCEAN: 
+
+    1. Jenkins -> Open Blue Ocean 
+    2. 
+
+
+
 
 
 
