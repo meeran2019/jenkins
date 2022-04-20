@@ -2,14 +2,42 @@ pipeline {
   agent any
   stages {
     stage('Buzz Build') {
-      steps {
-        sh 'echo $WORKSPACE'
+      parallel {
+        stage('Buzz Build') {
+          steps {
+            sh 'echo $WORKSPACE'
+          }
+        }
+
+        stage('parallel stage 1') {
+          steps {
+            echo 'parallel stage 1'
+          }
+        }
+
+        stage('parallel stage 3') {
+          steps {
+            echo 'parallel stage 3'
+          }
+        }
+
       }
     }
 
     stage('Bees Test') {
-      steps {
-        sh 'echo $WORKSPACE'
+      parallel {
+        stage('Bees Test') {
+          steps {
+            sh 'echo $WORKSPACE'
+          }
+        }
+
+        stage('parallel stage 2') {
+          steps {
+            echo 'parallel stage 2'
+          }
+        }
+
       }
     }
 
