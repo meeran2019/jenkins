@@ -23,6 +23,8 @@ pipeline {
       steps {
         echo '$Region'
         echo '$WORKSPACE'
+        sh '''echo $Region
+echo $WORKSPACE'''
       }
     }
 
