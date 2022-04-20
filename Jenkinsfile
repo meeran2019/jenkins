@@ -21,5 +21,11 @@ pipeline {
       }
     }
 
+    stage('feature-branch-step') {
+      steps {
+        echo 'feature branch'
+      }
+    }
+
   }
 }
