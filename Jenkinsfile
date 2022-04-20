@@ -15,13 +15,7 @@ pipeline {
 
     stage('Archive Artifacts') {
       steps {
-        archiveArtifacts(artifacts: '*', allowEmptyArchive: true, fingerprint: true)
-      }
-    }
-
-    stage('delete workspace') {
-      steps {
-        cleanWs(cleanWhenSuccess: true, deleteDirs: true)
+        archiveArtifacts(artifacts: 'CLOUDBEES-TRAINING', allowEmptyArchive: true, fingerprint: true)
       }
     }
 
