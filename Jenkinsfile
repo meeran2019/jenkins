@@ -21,7 +21,6 @@ pipeline {
 
     stage('display environment') {
       steps {
-        echo '$Env'
         echo '$Region'
         echo '$WORKSPACE'
       }
@@ -29,7 +28,6 @@ pipeline {
 
   }
   environment {
-    Env = 'Dev'
     Region = 'us-east-1'
   }
 }
