@@ -1,25 +1,80 @@
 pipeline {
   agent any
+  environment {
+  region = "dev"
+  type = "t2-micro"
+}
   stages {
-    stage('Buzz Buzz') {
+    stage('jenkinsfile') {
       steps {
-        echo 'Bees Buzz!'
+        sh 'echo $WORKSPACE'
       }
     }
 
-    stage('Bees Bees') {
+    stage('build') {
       steps {
-        echo 'Buzz, Bees, Buzz!'
-        echo 'Bees Buzzing!'
-        echo 'Bees Buzzing Again'
+        sh '''cd my-app
+mvn clean compile'''
       }
     }
 
-    stage('assignment-stage') {
+    stage('test') {
+      parallel {
+        stage('test') {
+          steps {
+            sh '''cd my-app
+mvn clean install'''
+          }
+        }
+
+        stage('stash-stage') {
+          steps {
+            stash(name: 'stash-file', allowEmpty: true)
+          }
+        }
+
+      }
+    }
+
+    stage('test-archive') {
       steps {
-        echo 'assignment step'
+        archiveArtifacts '**/target/*.jar'
+      }
+    }
+
+    stage('unstash') {
+      steps {
+        unstash 'stash-file'
+      }
+    }
+
+    stage('display-ws') {
+      steps {
+        sh '''echo $WORKSPACE
+ls '''
+      }
+    }
+
+    stage('confirm for deployment') {
+      steps {
+        input(message: 'Approve or Reject', ok: 'lets do it')
+      }
+    }
+
+    stage('display value') {
+      steps {
+        echo 'deployed successfully'
       }
     }
 
   }
+  post {
+  success {
+    echo 'post success'
+  }
+  failure {
+    echo 'post failure'
+    }
+  }
+
 }

@@ -233,6 +233,197 @@ SKELETAL PIPELINE USING BLUE OCEAN:
             }
             }
 
+    WORKING ON FEATURE BRANCH: 
+
+        1. Jenkins -> Blue Ocean -> New Pipeline 
+        2. Select Github -> Select repository -> create pipeline.
+        3. Click Modify -> Click Save -> Save to new branch
+    
+ARTIFACTS AND FINGERPRINTS: 
+
+    Artifact is file produced as a result of jenkins build. 
+    By default, stored on jenkins master not on the agent.
+    If not archived, they deleted when pipeline completes and workspace is wiped.
+    Archive the files in ${JENKINS_HOME}.
+
+    Fingerprint is md5 checksum of artifact.
+    Each archived artifact can be fingerprinted.
+
+    ARTIFACTS PATTERN: 
+        my-app.zip  -   file at workspace root.
+        images/*.png    -   .png files under image folder under workspace root.
+        target/**/*.jar -   all jar files recursively under target folder under workspace root.
+
+        "Copy Artifact Plugin" is used to copy artifacts from one project to another project. 
+
+        Artifact is coupled with build retention policy. Deleting build will delete the artifacts. 
+
+
+ADDING JUNIT STEP: 
+
+    JUnit is testing framework for java programs.
+    JUnit plugin provide steps that implement JUnit as publisher which consumes XML test reports and generates some graphical visualisation of test results.
+
+    Add Steps -> Archive JUnit-formatted test results -> .xml file should be maintained.
+
+
+ENVIRONMENT VARIABLES: 
+
+    System defined environment variables can be taken from Manage Jenkins -> System Information.
+
+    In Blue Ocean -> Start -> Environment -> Enter the Key & Value pair.
+
+    In Shell script step, use with $KEY1
+
+
+DEFINE PARALLEL STAGES: 
+
+    By default, if one parallel stage fails, other stages continue to execute it.
+        Add "failfast true" to force all parallel stage to abort if one stage fails.
+    
+    Use few parallel stages and avoid multiple parallel stages.
+
+    
+MULTI-BRANCH PIPELINE IN OLD-UI: 
+    
+    https://university.cloudbees.com/jenkins-pipeline-1-essentials/791029
+
+    1. Jenkins -> New Item -> Multi branch pipeline 
+    2. Select source repo and branch details.
+    3. If multiple branches, then all branches are executed separately.
+
+
+HINTS - PIPELINE STRUCTURE: 
+
+    1. Most of the pipeline is a series of steps that define the tasks to be executed.
+    2. Use minimum amount of code to connect pipeline steps and integrate tools.
+        Delegate most activity to steps that execute on agents and reduce load on masters.
+    3. Use command line tools for operations like,
+        Command line client for APIs: 
+            Use bash or sh script to integrate.
+                sh "java -jar client.jar $endPointUrl $inputData"
+    4. Use most used/well maintained Plugins.
+    5. Reduce the no of steps in pipeline. 
+    6. Log data stored in master. Manage logs helps to reduce load.
+
+
+BUILD TOOLS TO CREATE CODE FOR STEPS: 
+
+    Virtually any build tool (like Make, Ant, Maven, Gradle, NPM etc) can be used with jenkins.
+    For any of these build, can run by using sh for linux and bat for windows.
+        ex: sh 'mvn clean install'
+            bat 'mvn clean install'
+            sh 'npm build'
+            bat 'npm build'
+
+    ADDING TOOLS TO PIPELINE: 
+
+        Use tools section to define tools to auto install and put them on $PATH.
+        tools section can be applied at both pipeline level or stage level.
+        values used to define each tool must be configured on manage jenkins -> Global tool configuration.
+        
+            Tools supported without additional plugin: 
+                maven, jdk, gradle, nodejs
+            
+            pipeline {
+            agent any
+            tools {
+                maven 'Maven 3.3.9'
+                jdk 'jdk8'
+            }
+        ...
+        }
+
+        Common practice is to use maven at pipeline level and jdk at stage level. so pipeline allow to build for multiple jdk versions.
+
+        post section defined at pipeline or stage level. 
+        it is based on conditions like always, success, unsuccessful etc.
+            post{
+                always{
+                    echo "post condition"
+                }
+            }
+
+
+PIPELINE SYNTAX: 
+
+    Jenkins Dashboard -> Select Pipeline -> Pipeline Syntax
+        It displays Snippet generator & Declarative director generator.
+    
+
+AGENT SECTION:
+
+    It can be define at pipeline level or stage level.
+
+    To run all stages in any available agents:
+        pipeline {
+            agent any
+            ....
+            }
+
+    To run all stages on specific agents: 
+        pipeline {
+        agent { label 'bzzzmaven' }
+        ....
+        }
+
+    To run all stages on container with specific image: 
+        pipeline {
+        agent { docker 'bzzzcentos:7' }
+        ....
+        }
+
+    To run at specific agent:  Pipeline Agent is None.
+
+       pipeline {
+        agent none
+        stages {
+            stage ('Build') {
+            agent { label 'bzzzmaven' }
+            steps { ... }
+            }
+            stage ('Deploy') {
+            agent { label 'bzzzproduction' }
+            steps { ... }
+            }
+        }
+        }
+
+
+STASH/UNSTASH STEPS: 
+
+    Stash step is used to save a set of file for later use in same build.
+        Files are archived in compressed tar file suitable for < 5 MB.
+            In steps, select "Stash some files to be used later in the build".
+
+    Unstash step is used to restore the stashed file into current workspace. 
+            In steps, select "Restore files previously stashed"
+
+
+INTERACTIVE INPUT: 
+
+    Provides ability to pause the pipeline and wait for input from human.
+        In Steps, select "Wait for interactive input"
+
+            stage('confirm for deployment') {
+            steps {
+                input(message: 'Approve or Reject', ok: 'lets do it')
+            }
+            }
+
+POST SECTION: 
+
+    Post section contains steps to be executed at end of pipeline or stage.
+    It is divided into condition like success, failure , always etc.
+
+    NOTE: Post is not supported in blue ocean interactive. It requires to update in Jenkinsfile.
+
+
+ENVIRONMENT DIRECTIVE:
+
+    
+
+
 
 
 
