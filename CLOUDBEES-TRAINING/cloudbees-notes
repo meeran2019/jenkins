@@ -421,6 +421,7 @@ POST SECTION:
 
 ENVIRONMENT DIRECTIVE:
 
+    It is key value pair. It can be specify at pipeline or stage level. 
     
 
 
