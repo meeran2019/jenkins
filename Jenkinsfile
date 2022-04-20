@@ -19,11 +19,17 @@ pipeline {
       }
     }
 
-    stage('JUnit Test') {
+    stage('display environment') {
       steps {
-        junit '*'
+        echo '$Env'
+        echo '$Region'
+        echo '$WORKSPACE'
       }
     }
 
+  }
+  environment {
+    Env = 'Dev'
+    Region = 'us-east-1'
   }
 }
