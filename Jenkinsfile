@@ -15,7 +15,7 @@ pipeline {
 
     stage('Archive Artifacts') {
       steps {
-        archiveArtifacts(artifacts: 'CLOUDBEES-TRAINING', allowEmptyArchive: true, fingerprint: true)
+        archiveArtifacts(artifacts: 'Jenkinsfile', allowEmptyArchive: true, fingerprint: true)
       }
     }
 
