@@ -3,13 +3,13 @@ pipeline {
   stages {
     stage('Buzz Build') {
       steps {
-        sh './jenkins/build.sh'
+        sh 'echo $WORKSPACE'
       }
     }
 
     stage('Bees Bees') {
       steps {
-        sh './jenkins/test-all.sh'
+        sh 'echo $WORKSPACE'
       }
     }
 
