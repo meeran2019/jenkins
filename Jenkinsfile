@@ -15,5 +15,11 @@ pipeline {
       }
     }
 
+    stage('assignment-stage') {
+      steps {
+        echo 'assignment step'
+      }
+    }
+
   }
 }
