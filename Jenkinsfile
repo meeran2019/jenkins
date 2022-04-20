@@ -1,29 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('Buzz Buzz') {
+    stage('Buzz Build') {
       steps {
-        echo 'Bees Buzz!'
+        sh './jenkins/build.sh'
       }
     }
 
     stage('Bees Bees') {
       steps {
-        echo 'Buzz, Bees, Buzz!'
-        echo 'Bees Buzzing!'
-        echo 'Bees Buzzing Again'
-      }
-    }
-
-    stage('assignment-stage') {
-      steps {
-        echo 'assignment step'
-      }
-    }
-
-    stage('feature-branch-step') {
-      steps {
-        echo 'feature branch'
+        sh './jenkins/test-all.sh'
       }
     }
 
