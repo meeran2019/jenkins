@@ -424,11 +424,92 @@ ENVIRONMENT DIRECTIVE:
     It is key value pair. It can be specify at pipeline or stage level. 
     
 
+NOTIFICATIONS: 
+
+    Jenkins can send notification through email, slack to alert when build starts and succeed/failed.
+    Need to install corresponding plugin to support notification method.
+        Slack Notification Plugin, Email-ext plugin, 
+
+            stage('notification') {
+          steps {
+            emailext(subject: 'jenkins - build -start', body: 'build started', to: 'sheikmeeran.sj@gmail.com')
+          }
+        }
 
 
+        steps {
+            // send build started notifications
+            slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+            }
+
+WHEN DIRECTIVE: 
+
+    when directive specifies condition that must be met for the pipeline to execute the stage.
+
+    Condition can be based on branch, environment, expression, equals, changeRequest, buildingTag,
+    tag, beforeAgent (when evaluate the when condition), allof (when all nested condition are true), 
+    anyof(atleast one of nested condition is true)
+
+    NOTE: If specific stage condition is not satisfied, then that stage wont execute and move to another stage for execution. It will not stop at that stage.
+
+CREDENTIALS: 
+
+    There are 2 types Global and System. 
+    System is specific to Jenkins and Nodes.
+    Global is apply to all including Jenkins, Nodes, Items etc.
+
+    Use "WithCredentials" , it generated from snippet generator.
+
+        withCredentials([usernameColonPassword(credentialsId: 'github', variable: 'git')]) {
+        // some block
+        }   
+
+OPTIONS & CONFIGURATIONS: 
+
+    Options are set inside the jenkinsfile in declarative.
+    Configuration is set in classic UI.
+
+    NOTE: Scripted Pipelines and Freestyle jobs support the wrap step that builds wrappers or "environment configuration"; Declarative Pipeline does not support wrappers.
+
+PIPELINE PARAMETERS: 
+
+    Parameters provides the list of parameters user should provide when triggering the pipeline.
+
+    parameters {
+    string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
+    }    
 
 
+SHARED LIBRARIES: 
 
+    It is a separate SCM repo that contains reusable functions which can be called from pipeline.
+    It is configured once per jenkins instance.
+
+
+TRIGGERS DIRECTIVE: 
+
+    triggers are used to trigger pipeline in special condition.
+    It is rarely used in modern pipelines.
+    
+    It is useful in, 
+        Perform periodic tasks 
+        Trigger build remotely using curl and auth token.
+        From parent, to trigger chils pipeline.
+    
+    Supported trigger types are,
+        cron
+        pollSCM
+        upstream
+
+    Triggers are specified at top level of pipeline. 
+        pipeline {
+        agent any
+        triggers {
+            cron('H */4 * * 1-5')
+        }
+
+
+---------------------------------------------------------------------------------------------------------
 
 
 

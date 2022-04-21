@@ -1,20 +1,37 @@
+
 pipeline {
-  agent any
-  environment {
-  region = "dev"
-  type = "t2-micro"
+  options {
+  timeout(time: 30, unit: "SECONDS")
+  }
+  parameters {
+  string defaultValue: 'pipeline', name: 'type-s'
 }
+  agent any
   stages {
     stage('jenkinsfile') {
+      when {
+        branch 'master'
+      }
       steps {
         sh 'echo $WORKSPACE'
       }
     }
 
     stage('build') {
-      steps {
-        sh '''cd my-app
+      parallel {
+        stage('build') {
+          steps {
+            sh '''cd my-app
 mvn clean compile'''
+          }
+        }
+
+        stage('options') {
+          steps {
+            sleep 30
+          }
+        }
+
       }
     }
 
@@ -68,14 +85,18 @@ ls '''
     }
 
   }
+  environment {
+    region = 'dev'
+    type = 't2-micro'
+  }
   post {
-  success {
-    echo 'post success'
-  }
-  failure {
-    echo 'post failure'
+    success {
+      echo 'post success'
     }
+
+    failure {
+      echo 'post failure'
+    }
+
   }
-
 }
-
