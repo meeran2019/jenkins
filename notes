@@ -200,7 +200,7 @@ PUBLISH TEST RESULTS IN JOB:
 
         1. First to get the report path. 
                 Surefire report directory: /var/lib/jenkins/workspace/first maven project/maven-samples/single-module/target/surefire-reports
-        2. Project -> Configure -> Post Buil Actions -> Publish JUnit test result report.
+        2. Project -> Configure -> Post Build Actions -> Publish JUnit test result report.
         3. Enter the path with path/to/*.xml
         3. "Test Result Trend" graph will be shown in job page. 
 

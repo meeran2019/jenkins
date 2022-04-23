@@ -4,7 +4,6 @@ JENKINS ESSENTIAL
 
     Discussed about CI, CD, git and test details. 
 
-
 ---------------------------------------------------------------------------------------------------------
 JENKINS ADMINISTRATION:
 ---------------------------------------------------------------------------------------------------------
@@ -41,6 +40,7 @@ SYSTEM CONFIGURATION:
         Configure many standard aspects of jenkins including JDK installation, Build tools installation, Version control tools etc.
         Multiple version of maven or jdk can be installed. 
 
+---------------------------------------------------------------------------------------------------------
 
 MANAGE PLUGINS: 
 
@@ -64,6 +64,7 @@ BUILD NOTIFICATIONS:
     Some plugins used are ,
         cleaning up and notifications, Notification plugin, email-ext plugin, mailer plugin, slack plugin.
 
+---------------------------------------------------------------------------------------------------------
 
 WORKING WITH NODES: 
 
@@ -82,6 +83,7 @@ BUILD AGENTS:
     https://university.cloudbees.com/jenkins-administration-1-essentials/868943
 
 
+
 ---------------------------------------------------------------------------------------------------------
 SECURITY: 
 ---------------------------------------------------------------------------------------------------------
@@ -92,7 +94,7 @@ SECURITY:
 
     To select authorization - Manage Jenkins -> Configure global security -> Authorization
 
-    Accouting: 
+    Accounting: 
         Auditing can be done by using "Audit Trail Plugin".
 
     Global Security Settings: 
@@ -106,11 +108,14 @@ SECURITY:
         Manage Credentials: 
             Used to store the credentials in different format. 
 
+
 FOLDERS: 
 
     It can be created with separate namespace for different projects with same name and helps to simplify the pipeline. 
 
     Move - Helps to move job from one folder to another.
+
+    (Move button can seen left side of pipeline)
 
 
 MONITOR JENKINS: 
@@ -121,6 +126,7 @@ MONITOR JENKINS:
 
         Load Statistics - To track utilization of executors. 
 
+
 RUNNING BACKUPS: 
 
     $JENKINS_HOME directory to be backedup.
@@ -128,6 +134,8 @@ RUNNING BACKUPS:
 
     https://university.cloudbees.com/jenkins-administration-1-essentials/769813
 
+
+---------------------------------------------------------------------------------------------------------
 
 AUTOMATE JENKINS:    
 
@@ -141,8 +149,10 @@ AUTOMATE JENKINS:
     3. Manage Jenkins -> Tools and Actions -> Jenkins CLI -> Available commands -> Gives list of core jenkins available command. 
         By using plugins, can contribute additional commands. 
 
-    Can also use groovysh/groovy in CLI. 
-            "java -jar jenkins-cli.jar -s http://localhost:8080/ groovysh "
+    JENKINS SCRIPT: 
+
+        Can also use groovysh/groovy in CLI. 
+                "java -jar jenkins-cli.jar -s http://localhost:8080/ groovysh "
 
     JENKINS API: 
 
@@ -152,19 +162,23 @@ AUTOMATE JENKINS:
             {"name":"verbosity"}, "value":"high"}]}` \
         http://${JENKINS_URL}/job/${MY_PROJECT}/build/api
 
+
     SCRIPT CONSOLE: 
+
         It helps to type in and execute an arbitrary groovy script on the server. 
             Manage Jenkins -> Tools and Actions -> Script Console.
 
+
     RELOAD CONFIGURATION FROM DISK: 
+
         If any configuration changes through CLI, it will require ro refresh to update the configuration.
 
         Manage Jenkins -> Tools and Actions -> Reload configuration from disk.
 
     
 ---------------------------------------------------------------------------------------------------------
-
 PIPELINE AS CODE: 
+---------------------------------------------------------------------------------------------------------
 
     Pipeline is defined in jenkinsfile that uses DSL based on groovy script. 
     Deployment flow is expressed as Code.
@@ -316,6 +330,7 @@ BUILD TOOLS TO CREATE CODE FOR STEPS:
             sh 'npm build'
             bat 'npm build'
 
+
     ADDING TOOLS TO PIPELINE: 
 
         Use tools section to define tools to auto install and put them on $PATH.
@@ -336,7 +351,9 @@ BUILD TOOLS TO CREATE CODE FOR STEPS:
 
         Common practice is to use maven at pipeline level and jdk at stage level. so pipeline allow to build for multiple jdk versions.
 
-        post section defined at pipeline or stage level. 
+
+POST section defined at pipeline or stage level. 
+
         it is based on conditions like always, success, unsuccessful etc.
             post{
                 always{
@@ -344,6 +361,7 @@ BUILD TOOLS TO CREATE CODE FOR STEPS:
                 }
             }
 
+---------------------------------------------------------------------------------------------------------
 
 PIPELINE SYNTAX: 
 
@@ -373,7 +391,7 @@ AGENT SECTION:
         ....
         }
 
-    To run at specific agent:  Pipeline Agent is None.
+    To run at specific stage agent:  Pipeline Agent is None.
 
        pipeline {
         agent none
@@ -411,6 +429,7 @@ INTERACTIVE INPUT:
             }
             }
 
+
 POST SECTION: 
 
     Post section contains steps to be executed at end of pipeline or stage.
@@ -442,6 +461,7 @@ NOTIFICATIONS:
             slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
 
+
 WHEN DIRECTIVE: 
 
     when directive specifies condition that must be met for the pipeline to execute the stage.
@@ -451,6 +471,7 @@ WHEN DIRECTIVE:
     anyof(atleast one of nested condition is true)
 
     NOTE: If specific stage condition is not satisfied, then that stage wont execute and move to another stage for execution. It will not stop at that stage.
+
 
 CREDENTIALS: 
 
@@ -464,12 +485,14 @@ CREDENTIALS:
         // some block
         }   
 
+
 OPTIONS & CONFIGURATIONS: 
 
     Options are set inside the jenkinsfile in declarative.
     Configuration is set in classic UI.
 
     NOTE: Scripted Pipelines and Freestyle jobs support the wrap step that builds wrappers or "environment configuration"; Declarative Pipeline does not support wrappers.
+
 
 PIPELINE PARAMETERS: 
 
@@ -509,8 +532,3 @@ TRIGGERS DIRECTIVE:
         }
 
 ---------------------------------------------------------------------------------------------------------
-
-
-
-        
-
