@@ -1,0 +1,27 @@
+
+What is CI/CD? 
+
+    CI  - It used for continuos build, continuos test and immediate feedback to developers. 
+    CD  - Continuos Delivery - Deploy to production with Manual Approval.
+    CD  - Continuos Deployment - Auto deployment to production and no manual approval process. 
+
+Why Jenkins: 
+
+    Open source.
+    Multiple Plugins support.
+    Cloudbees used for enterprise option.
+
+    go run main.go &        -   to run the go project. 
+
+Installation: 
+
+    https://www.jenkins.io/doc/book/installing/
+
+    /etc/sysconfig/jenkins -> HTTP_PORT=8081      -   to update the default port. 
+
+
+Jenkins CLI: 
+
+    
+
+

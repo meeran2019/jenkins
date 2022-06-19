@@ -1,0 +1,66 @@
+
+pipeline {
+agent any                
+environment {
+  environment = "dev"
+  region = "us-east-1"
+}
+
+options {
+  timeout(5)
+}
+
+parameters {
+  string defaultValue: 'ok', name: 'message'
+}
+
+stages {
+  stage('build-stage') {
+    steps {
+      echo "Build Process Starts ... "
+    }
+  }
+
+  stage('test-stage') {
+  tools {
+  maven 'localmaven'
+  jdk 'localjdk'
+}
+
+  steps {
+    echo "Test Process Starts ... "
+  }
+
+  post {
+    success {
+      echo "Test Stage - On Post Success ... "
+    }
+    failure {
+      echo "Test Stage - On Post Failure ... "
+    }
+  }
+}
+
+  stage('deploy-stage') {
+    steps {
+      echo "Deploy Process Starts ... "
+    }
+    when {
+    branch 'master'
+}
+}
+
+    stage('deploy-to-prod-approval') {
+  steps {
+    echo "Deploy to Prod Approval Process ... "
+  }
+
+  input {
+    message 'Approve it'
+    ok 'Approve'
+  }
+}
+
+}
+}
+
