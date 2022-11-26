@@ -1,0 +1,39 @@
+---------------------------------------------------------------------------------------------------------
+Jenkins Shared Library
+---------------------------------------------------------------------------------------------------------
+
+WHY?:
+
+    Code reusuability.
+    Avoid writing multiple times of same code / duplication.
+    Change has been maintained in version control.
+
+---------------------------------------------------------------------------------------------------------
+
+Directory Structure:
+
+    src -> org -> foo -> Bar.groovy         (groovy program uses this source file and not mandatory.)
+
+    vars -> foo.groovy & foo.txt            (Here writing the groovy program.)
+
+    resources -> org -> foo -> bar.json     (For keep static content and not mandatory.)
+
+---------------------------------------------------------------------------------------------------------
+
+Program Flow: 
+
+    1. Store the shared library groovy programs in git repo. 
+        myfirstrepo.groovy 
+            def call(def username){
+                echo "my name is ${username}"
+            }
+
+    2. In Jenkins, Manage Jenkins -> Configure system -> Global pipeline libraries (enter sharedlib_name and git repo path of shared library).
+    
+    3. To import in jenkinsfile, use 
+            @Library('library_name@branch_name') _
+            node{
+                myfirstcode("argument1")    -> myfirstcode is filename in shared library. 
+            }
+
+
