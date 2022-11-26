@@ -1,4 +1,14 @@
+/*
+// This is first groovy example in shared library. 
 @Library('shared_library@master') _
     node{
     myfirstgroovy("meeran")
 }
+*/
+
+/*
+@Library('shared_library@master') _
+    node{
+    myfirstgroovy("sheik")
+}
+*/
