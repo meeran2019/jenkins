@@ -6,9 +6,4 @@
 }
 */
 
-/*
-@Library('shared_library@master') _
-    node{
-    myfirstgroovy("sheik")
-}
-*/
+
