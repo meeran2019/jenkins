@@ -27,8 +27,20 @@ Program Flow:
             def call(def username){
                 echo "my name is ${username}"
             }
-
-    2. In Jenkins, Manage Jenkins -> Configure system -> Global pipeline libraries (enter sharedlib_name and git repo path of shared library).
+    
+    2. Static Library:  Store the shared library groovy programs in git repo. n Jenkins, Manage Jenkins -> Configure system -> Global pipeline libraries (enter sharedlib_name and git repo path of shared library).
+    
+        myfirstrepo.groovy 
+            def call(def username){
+                echo "my name is ${username}"
+            }
+       
+       Dynamic Library: No need to define in jenkins. Just place below code to get dynamicallyin jenkinsfile. 
+       
+               library identifier: 'custom-lib@master', retriever: modernSCM(
+              [$class: 'GitSCMSource',
+               remote: 'git@git.mycorp.com:my-jenkins-utils.git',
+               credentialsId: 'my-private-key'])    
     
     3. To import in jenkinsfile, use 
             @Library('library_name@branch_name') _
