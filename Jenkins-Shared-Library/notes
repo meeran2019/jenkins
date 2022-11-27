@@ -48,4 +48,22 @@ Program Flow:
                 myfirstcode("argument1")    -> myfirstcode is filename in shared library. 
             }
 
+---------------------------------------------------------------------------------------------------------
+Another program Flow:
 
+    1. Write the shared library and place it in git. Here place pipeline declaration within groovy script. 
+    
+            def call(arguments){
+            pipeline{
+            agent any 
+            stages{
+            stage('test'){
+            steps{
+            echo 'test'
+            }
+            }}
+            }
+       }
+
+    2. From jenkinsfile, dynamic include and pass the vlaue for arguments. 
+    
