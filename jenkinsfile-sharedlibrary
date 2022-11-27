@@ -8,8 +8,9 @@
 
 
 
+/*
+// This is another method to call shared library using script in declarative pipeline. 
 @Library('shared_library@master') _
-
 pipeline{
     agent any
     stages{
@@ -23,3 +24,5 @@ pipeline{
         }
     }
 }
+*/
+
