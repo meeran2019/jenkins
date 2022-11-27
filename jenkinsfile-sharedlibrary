@@ -7,3 +7,16 @@
 */
 
 
+
+@Library('shared_library@master') _
+pipeline{
+    agent any
+    stages{
+        stage('build')
+        steps{
+            script{
+                myfirstgroovy("meeran")
+            }
+        }
+    }
+}
