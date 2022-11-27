@@ -14,8 +14,12 @@ pipeline{
     agent any
     stages{
         stage('build')
+        {
         steps{
-            myfirstgroovy("meeran")
+            script{
+                myfirstgroovy("meeran")
+            }
+        }
         }
     }
 }
