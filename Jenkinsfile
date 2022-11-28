@@ -14,6 +14,9 @@ pipeline {
       }
       steps {
         sh 'echo $WORKSPACE'
+        script{
+          // groovy script. 
+        }
       }
     }
 

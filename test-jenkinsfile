@@ -1,0 +1,39 @@
+pipeline{
+    agent any 
+    options{
+        timeout()
+    }
+    triggers{}
+    parameter{
+        key1: value1
+        key2: value2 
+    }
+    environment{
+        key1 = value1
+        key2 = value2
+    }
+    stages{
+        stage('build stage'){
+            steps{
+                echo 'build step'
+            }
+        }
+        stage('parallel'){
+            stage('parallel stage1'){
+                steps{
+                    echo 'parallel step1'
+                }
+            }
+            stage('parallel stage2'){
+                steps{
+                    echo "parallel step2"
+                }
+            }
+        }
+    }
+    post{
+        success{} 
+        failure{} 
+        always{} 
+    }
+}
